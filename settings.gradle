@@ -1,0 +1,6 @@
+rootProject.name = 'quick-lang'
+include 'lexer'
+include 'parser'
+include 'intermediate'
+include 'compiler'
+
