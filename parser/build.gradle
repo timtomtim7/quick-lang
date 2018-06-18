@@ -1,1 +1,6 @@
 apply from: '../common.gradle'
+
+dependencies {
+    compileOnly project(":lexer")
+    testCompileOnly project(":lexer")
+}
