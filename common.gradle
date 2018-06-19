@@ -1,7 +1,7 @@
-apply plugin: "kotlin"
-
 group 'quick'
 version '0.0'
+
+apply plugin: 'kotlin'
 
 repositories {
 	mavenCentral()

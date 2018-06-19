@@ -1,19 +1,23 @@
 import quick.lexer.Lexer
+import quick.lexer.PrettyPrint
 
 fun main(args: Array<String>) {
-    val code = """
+	val code = """
+		main {
+			Int number = 544
+			String tom = "1024"
+			Boolean haha = true
+			more()
+		}
 
-        main() {
-            number = 544
-            tom = "1024"
-            haha = true
-        }
+		Rectangle(public Int x, y, width, height)
 
-        more() Rectangle {
-            return new Rectangle()
-        }
+		Rectangle more {
+			return new Rectangle()
+		}
 
-    """.trimIndent().lines().filter(String::isNotBlank)
+    """.trimIndent()
 
-    val tokens = Lexer.lex(code)
+	val tokens = Lexer.lex(code)
+	PrettyPrint.print(code, tokens)
 }

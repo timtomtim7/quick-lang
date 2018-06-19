@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler.iml" group="compiler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler/compiler_main.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler/compiler_main.iml" group="compiler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler/compiler_test.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler/compiler_test.iml" group="compiler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/intermediate.iml" filepath="$PROJECT_DIR$/.idea/modules/intermediate.iml" group="intermediate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/intermediate/intermediate_main.iml" filepath="$PROJECT_DIR$/.idea/modules/intermediate/intermediate_main.iml" group="intermediate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/intermediate/intermediate_test.iml" filepath="$PROJECT_DIR$/.idea/modules/intermediate/intermediate_test.iml" group="intermediate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lexer.iml" filepath="$PROJECT_DIR$/.idea/modules/lexer.iml" group="lexer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lexer/lexer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/lexer/lexer_main.iml" group="lexer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lexer/lexer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/lexer/lexer_test.iml" group="lexer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/parser.iml" filepath="$PROJECT_DIR$/.idea/modules/parser.iml" group="parser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/parser/parser_main.iml" filepath="$PROJECT_DIR$/.idea/modules/parser/parser_main.iml" group="parser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/parser/parser_test.iml" filepath="$PROJECT_DIR$/.idea/modules/parser/parser_test.iml" group="parser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/quick-lang.iml" filepath="$PROJECT_DIR$/.idea/modules/quick-lang.iml" />
+    </modules>
+  </component>
+</project>

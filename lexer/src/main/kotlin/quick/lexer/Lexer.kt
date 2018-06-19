@@ -2,41 +2,38 @@ package quick.lexer
 
 object Lexer {
 
-    fun lex(lines: List<String>): List<Token> {
-        val iterator = TextIterator(lines)
-        val result = ArrayList<Token>()
+	fun lex(source: String): List<Token> {
+		val iterator = TextIterator(source)
+		val result = ArrayList<Token>()
 
-        while (iterator.hasNext()) {
+		while (iterator.hasNext()) {
+			iterator.takeWhile { it.isWhitespace() && it != '\n' }
 
-            if(iterator.currentLine.isBlank()) {
-                iterator.next()
-                continue
-            }
+			var token: Token? = null
+//			println("Parsing @${iterator.position}:${iterator.position.index} '${iterator.current}' = ${iterator.current?.toInt()}")
 
-            iterator.takeWhile(Char::isWhitespace)
+			for (parser in TokenType.values) {
+				val position = iterator.position
 
-            var token: Token? = null
+				token = try {
+					val (type, value) = parser.parse(iterator)
+					Token(type, value, position, iterator.position)
+				} catch (ex: LexerException) {
+					iterator.position = position
+					continue
+				}
+				break
+			}
 
-            for (type in TokenType.types) {
-                val pos = iterator.pos
+			if (token == null) {
+				println(iterator.position)
+				println("'${iterator.next()}' (${iterator.current!!.toInt()})")
+				throw LexerException()
+			}
 
-                token = try {
-                    type.parse(iterator)
-                } catch (ex: LexerException) {
-                    iterator.pos = pos
-                    continue
-                }
-                break
-            }
-
-            if(token == null) {
-                println(iterator.pos)
-                throw LexerException()
-            }
-
-            result.add(token)
-        }
-        return result
-    }
+			result.add(token)
+		}
+		return result
+	}
 
 }

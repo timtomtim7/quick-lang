@@ -2,6 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="compiler_main" target="1.8" />
+      <module name="compiler_test" target="1.8" />
+      <module name="intermediate_main" target="1.8" />
+      <module name="intermediate_test" target="1.8" />
+      <module name="lexer_main" target="1.8" />
+      <module name="lexer_test" target="1.8" />
+      <module name="parser_main" target="1.8" />
+      <module name="parser_test" target="1.8" />
       <module name="quick-lang_main" target="1.8" />
       <module name="quick-lang_test" target="1.8" />
     </bytecodeTargetLevel>

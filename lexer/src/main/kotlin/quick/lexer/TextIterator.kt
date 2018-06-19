@@ -1,60 +1,77 @@
 package quick.lexer
 
-class TextIterator(private val src: List<String>) : Iterator<Char> {
+class TextIterator(private val source: String) : Iterator<Char> {
 
-    var pos: Position = Position(0, 0)
+	private var column: Int = 0
+	private var line: Int = 0
+	private var index: Int = 0
 
-    var current: Char = 0.toChar()
-        private set
+	var position: Position
+		get() = Position(index, line, column)
+		set(value) {
+			this.index = value.index
+			this.line = value.line
+			this.column = value.column
+		}
 
-    var currentLine: String = ""
-        private set
+	val current: Char?
+		get() = source.getOrNull(index - 1)
 
-    override fun hasNext(): Boolean {
-        return pos.line < src.size && pos.column < src[pos.line].length
-    }
+	override fun hasNext(): Boolean {
+		return index < source.length
+	}
 
-    fun hasPrevious(): Boolean {
-        return pos.line > 0 || pos.column > 0
-    }
+	fun hasPrevious(): Boolean {
+		return index > 0
+	}
 
-    override fun next(): Char {
-        if (!hasNext())
-            throw NoSuchElementException("thurs nuh mur fuckin STUFF MATE")
+	override fun next(): Char {
+		if (!hasNext())
+			throw NoSuchElementException()
+		val value = source[index++]
 
-        currentLine = src[pos.line]
-        current = currentLine[pos.column]
+		if (current == '\n') {
+			line++
+			column = 0
+		} else {
+			column++
+		}
 
-        pos = if (pos.column + 1 >= currentLine.length)
-            Position(pos.line + 1, 0)
-        else
-            Position(pos.line, pos.column + 1)
-        return current
-    }
+		return value
+	}
 
-    fun previous(): Char {
-        if (!hasPrevious())
-            throw NoSuchElementException("thurs nuhthin BACKWARS EITHER MATE")
+	fun previous(): Char {
+		if (!hasPrevious())
+			throw NoSuchElementException()
 
-        pos = if (pos.column - 1 < 0)
-            Position(pos.line - 1, src[pos.line - 1].length - 1)
-        else
-            Position(pos.line, pos.column - 1)
+		val value = source[--index]
 
-        val line = src[pos.line]
-        current = line[pos.column]
-        currentLine = line
-        return current
-    }
+		if (column == 0) {
+			line--
 
-    inline fun takeWhile(body: (Char) -> Boolean): String {
-        val builder = StringBuilder()
+			column = 0
+			var i = index
+			while (i > 0 && source[--i] != '\n')
+				column++
+		} else {
+			column--
+		}
 
-        while (hasNext() && body(next())) {
-            builder.append(current)
-        }
-        if (hasPrevious())
-            previous()
-        return builder.toString()
-    }
+		return value
+	}
+
+	inline fun takeWhile(body: (Char) -> Boolean): String {
+		val builder = StringBuilder()
+
+		while(hasNext()) {
+			if(body(next())) {
+				builder.append(current!!)
+			}else{
+				previous()
+				break
+			}
+		}
+
+		return builder.toString()
+	}
 }
