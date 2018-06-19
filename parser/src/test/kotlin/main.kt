@@ -1,4 +1,5 @@
-import quick.lexer.*
+import quick.lexer.Lexer
+import quick.lexer.PrettyPrint
 
 fun main(args: Array<String>) {
 	val code = """
@@ -20,6 +21,6 @@ fun main(args: Array<String>) {
     """.trimIndent()
 
 	val tokens = Lexer.lex(code)
-	tokens.filter { it.type != TokenType.NewLine }.forEach(::println)
+//	tokens.filter { it.type != TokenType.NewLine }.forEach(::println)
 	PrettyPrint.print(code, tokens)
 }
