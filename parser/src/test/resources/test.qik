@@ -1,0 +1,16 @@
+main {
+	String name = "Tom1024"
+	hello blah wow y7fh74
+	infer test = true
+	if(test == true) {
+		println("Hey!")
+	}
+	more()
+}
+
+Rectangle(public Int x, y, width, height)
+true
+
+Rectangle more {
+	return new Rectangle()
+}

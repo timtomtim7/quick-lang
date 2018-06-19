@@ -1,26 +1,19 @@
+import quick.lexer.ColorizedPrinter
 import quick.lexer.Lexer
-import quick.lexer.PrettyPrint
 
 fun main(args: Array<String>) {
-	val code = """
-		main {
-			String name = "Tom1024"
-			infer test = true
-			if(test == true) {
-				println("Hey!")
-			}
-			more()
-		}
-
-		Rectangle(public Int x, y, width, height)
-
-		Rectangle more {
-			return new Rectangle()
-		}
-
-    """.trimIndent()
+	val fileName = "test.qik"
+	val code = ClassLoader.getSystemResource(fileName)
+			.readText()
+			.replace("\t", " ".repeat(3))
 
 	val tokens = Lexer.lex(code)
+	ColorizedPrinter.printError(fileName, code, tokens, tokens[8], "Unexpected identifier")
+	ColorizedPrinter.printError(fileName, code, tokens, tokens[9], "Unexpected identifier")
+	ColorizedPrinter.printError(fileName, code, tokens, tokens[10], "Unexpected identifier")
+	ColorizedPrinter.printError(fileName, code, tokens, tokens[11], "Unexpected identifier")
+	ColorizedPrinter.printError(fileName, code, tokens, tokens[53], "Unexpected boolean literal")
+
 //	tokens.filter { it.type != TokenType.NewLine }.forEach(::println)
-	PrettyPrint.print(code, tokens)
+//	ColorizedPrinter.print(code, tokens)
 }

@@ -3,7 +3,15 @@ package quick.lexer
 object ANSI {
 	private const val ESCAPE = "\u001b["
 
-	interface Value
+	interface Value {
+		operator fun plus(value: String): String {
+			return toString() + value
+		}
+
+		operator fun plus(value: Value): String {
+			return toString() + value.toString()
+		}
+	}
 
 	enum class Text(code: String) : Value {
 		BLACK("30m"),
@@ -59,6 +67,7 @@ object ANSI {
 
 	enum class Decoration(code: String) : Value {
 		BOLD("1m"),
+		DIM("2m"),
 		UNDERLINE("4m"),
 		INVERTED("7m"),
 		RESET("0m");
