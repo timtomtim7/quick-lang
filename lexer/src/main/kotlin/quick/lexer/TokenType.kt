@@ -144,12 +144,16 @@ sealed class TokenType {
 
 		override fun parse(text: TextIterator): Result {
 			var index = 0
-			do while(index < str.length && text.hasNext() && text.next() == str[index++])
+			while (text.hasNext() && index < str.length) {
+				if (text.next() != str[index++]) {
+					throw LexerException()
+				}
+			}
 
-			if(index == str.length)
-				return this to str
+			if (index != str.length)
+				throw LexerException()
 
-			throw LexerException()
+			return this to str
 		}
 
 		companion object {

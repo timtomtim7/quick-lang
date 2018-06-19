@@ -1,12 +1,13 @@
-import quick.lexer.Lexer
-import quick.lexer.PrettyPrint
+import quick.lexer.*
 
 fun main(args: Array<String>) {
 	val code = """
 		main {
-			Int number = 544
-			String tom = "1024"
-			Boolean haha = true
+			String name = "Tom1024"
+			infer test = true
+			if(test == true) {
+				println("Hey!")
+			}
 			more()
 		}
 
@@ -19,5 +20,6 @@ fun main(args: Array<String>) {
     """.trimIndent()
 
 	val tokens = Lexer.lex(code)
+	tokens.filter { it.type != TokenType.NewLine }.forEach(::println)
 	PrettyPrint.print(code, tokens)
 }
